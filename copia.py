@@ -8,9 +8,11 @@ results=requests.get(url)
 soup= BeautifulSoup(results.text, 'html.parser')
 prices = soup.find_all('div',class_='product-small')
 for item in prices:
-    print(item.find('img').get('data-src'))
-    print(item.find('p', class_='woocommerce-loop-product__title').text)
-    print(item.find('bdi').text)
+    print(item.find('a').get('href'))
+    # print(item.find('img').get('data-src'))
+    # print(item.find('p', class_='woocommerce-loop-product__title').text)
+
+    # print(item.find('bdi').text)
     print('\n')
 
     # print(prices)

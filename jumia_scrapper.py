@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup
 # find_a_product()
 
 ##-----------------------------------------------------------------------------------
-url = "https://www.jumia.co.ke/catalog/?q=johnie+walker"
+url = "https://www.jumia.co.ke/catalog/?q=dress"
 
 results = requests.get(url)
 
@@ -33,14 +33,19 @@ soup = BeautifulSoup(results.text, 'html.parser')
 # product_name = soup.find_all('h3', class_='prc')
 # stars = soup.find_all('div', class_='_s')
 
-product = soup.find_all('a', class_='core')
+product = soup.find_all('article')
+
 
 for item in product:
-    print(item.find('h3', class_='name').text)
-    print(item.find('div', class_='prc').text)
-    print(item.find('div', class_='_s').text)
-    print(item.find('img').get('data-src'))
-    print('\n')
+    # print(item.prettify())
+    # print(item.find('a').get('href'))
+    if item.find('a').get('href')and item.find('h3', class_='name') and item.find('div', class_='prc')and item.find('img',class_='img') and item.find('div', class_='_s'):
+        # print(item.find('h3', class_='name').text)
+        # print(item.find('div', class_='prc').text)
+        # print(item.find('div', class_='_s').text)
+        # print(item.find('img',class_="img").get('data-src'))
+        print('https://jumia.co.ke'+item.find('a').get('href'))
+        print('\n')
 
 
-print(product)
+# print(product)
